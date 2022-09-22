@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useTransaction } from "../context/TransactionContext";
 import Drawer from "./Drawer";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { connectToWallet, currentAccount } = useTransaction();
   return (
     <nav className="flex justify-between mt-3">
       <div className="logo flex gap-3 justify-center items-center">
@@ -24,9 +26,15 @@ const Navbar = () => {
           <a href="#contact">Contact Us</a>
         </li>
       </ul>
-      <button className="hidden md:block bg-indigo-600 hover:bg-indigo-700 duration-500 px-5 py-1 rounded-full">
-        Login
-      </button>
+      {!currentAccount && (
+        <button
+          className="hidden md:block bg-indigo-600 hover:bg-indigo-800 duration-500 px-5 py-2 rounded-full"
+          onClick={connectToWallet}
+        >
+          Connect Wallet
+        </button>
+      )}
+
       <GiHamburgerMenu
         className="md:hidden text-2xl"
         onClick={() => setIsOpen(true)}

@@ -5,14 +5,8 @@ import { shortenAddress } from "../utils/helpers";
 import Loader from "./Loader";
 
 const Welcome = () => {
-  const {
-    connectToWallet,
-    currentAccount,
-    handleChange,
-    formData,
-    sendTransaction,
-    loading,
-  } = useTransaction();
+  const { currentAccount, handleChange, formData, sendTransaction, loading } =
+    useTransaction();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,17 +29,15 @@ const Welcome = () => {
           <button
             type="button"
             className=" bg-green-600 cursor-not-allowed duration-500 px-5 py-3 my-4 rounded-full font-semibold text-base"
-            onClick={connectToWallet}
           >
             Connected
           </button>
         ) : (
           <button
             type="button"
-            className=" bg-indigo-600 hover:bg-indigo-800 duration-500 px-5 py-3 my-4 rounded-full font-semibold text-base"
-            onClick={connectToWallet}
+            className=" bg-indigo-600 cursor-not-allowed duration-500 px-5 py-3 my-4 rounded-full font-bold text-lg"
           >
-            Connect Wallet
+            Not Connected
           </button>
         )}
 
